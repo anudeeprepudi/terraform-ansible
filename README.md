@@ -1,7 +1,7 @@
 # terraform-ansible
 
 Steps to setup the ansible terraform-control server
-1.  `git clone https://github.com/SathishkumarDemoProject1/terraform-ansible.git`
+1.  `git clone https://github.com/anudeeprepudi/terraform-ansible.git`
 2.  `cd terraform-ansible`
 3.  `sh install-ansible-terraform.sh`
 
