@@ -3,7 +3,7 @@
 - hosts: all
   connection: ssh
   become: True
-  become_user: root
+  become_user: roo
   roles:
     - nginx
     - webapp
