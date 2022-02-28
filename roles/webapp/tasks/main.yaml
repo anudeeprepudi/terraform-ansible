@@ -15,7 +15,7 @@
     name: nodejs
     state: present
 
-- name: Clone of a single branc
+- name: Clone of a single branch
   git:
     repo: https://github.com/anudeeprepudi/VideoCropper.git
     dest: /home/ubuntu/terraform-ansible/video-cropper
