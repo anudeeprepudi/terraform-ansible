@@ -15,7 +15,7 @@ Prerequsites:
 1. `cd terraform`
 2. `terraform init`
 3. `terraform plan`
-4. `terraform apply -vars="vpc_id={you_vpc_id}"`
+4. `terraform apply`
 5. `cd ../`
 
 Note down the Ip list
