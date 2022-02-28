@@ -6,7 +6,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "webservers" {
-	count = 2
+	count = 1
 	ami = "ami-0e472ba40eb589f49"
 	instance_type = "t3.nano"
 	key_name = "demo"
