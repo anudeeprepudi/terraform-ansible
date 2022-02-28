@@ -1,0 +1,40 @@
+---
+- name: Install the gpg key for nodejs LTS
+  apt_key:
+    url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
+    state: present
+
+- name: Install the nodejs LTS repos
+  apt_repository:
+    repo: "deb https://deb.nodesource.com/node_13.x bionic main"
+    state: present
+    update_cache: yes
+
+- name: Install the nodejs
+  apt:
+    name: nodejs
+    state: present
+
+- name: Clone of a single branch
+  git:
+    repo: https://github.com/SathishkumarDemoProject1/VideoCropper.git
+    dest: /home/ubuntu/terraform-ansible/video-cropper
+    clone: yes
+    version: master
+
+- name: Starting the application
+  shell: |                    # Multiple commands in Ansible shell module
+     cd /home/ubuntu/terraform-ansible/video-cropper;
+     sudo sh setup.sh;
+     
+- name: "Install forever (to run Node.js app)."
+  npm: name=forever global=yes state=present
+
+- name: "Check list of Node.js apps running."
+  command: forever list
+  register: forever_list
+  changed_when: false
+
+- name: "Start example Node.js app."
+  command: forever start /home/ubuntu/terraform-ansible/video-cropper/server/server.js
+  when: "forever_list.stdout.find('/home/ubuntu/terraform-ansible/video-cropper/server/server.js') == -1"
