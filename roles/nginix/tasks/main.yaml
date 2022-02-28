@@ -1,0 +1,22 @@
+---
+- name: Install Nginx
+  apt:
+    name: nginx
+    state: latest
+- name: Copy nginx conf
+  copy:
+      src: server1.conf
+      dest: /etc/nginx/conf.d/default.conf
+      mode: 0755
+- name: update config
+  shell: |                    # Multiple commands in Ansible shell module
+     mv /etc/nginx/conf.d/default.conf /etc/nginx/sites-available/default
+
+- name: Enable Nginx service
+  systemd:
+    name: nginx
+    daemon_reload: yes
+    enabled: yes
+    state: started
+- name: restart nginx
+  service: name=nginx state=restarted enabled=yes
